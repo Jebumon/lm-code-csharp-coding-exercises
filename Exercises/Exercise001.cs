@@ -8,36 +8,75 @@ namespace Exercises
     {
         public string CapitalizeWord(string word)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            if (word == null || word == "")
+            {
+                return word;
+            }
+            else
+            {
+                return char.ToUpper(word[0]) + word.Substring(1);
+            }
         }
 
         public string GenerateInitials(string firstName, string lastName)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            return firstName[0] + "." + lastName[0];
         }
 
         public double AddVat(double originalPrice, double vatRate)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            if (vatRate < 0)
+            {
+                Console.WriteLine("VAT cannot be negative. Please enter a valid VAT.");
+                return 0;
 
-            // NB: Look in Exercise001Tests.cs
-            //     There is a test with commented out assertions.
-            //     For an extra challenge, uncomment those assertions and make that test pass too.
+            }
+            else if (originalPrice < 0)
+            {
+                Console.WriteLine("Price cannot be negative. Please enter a valid price.");
+                return 0;
+            }
+            else if (vatRate == 20 || vatRate == 0)
+            {
+                return originalPrice + vatRate;
+            }
+            else
+            {
+                var vatPrice = originalPrice + originalPrice * vatRate / 100;
+                vatPrice = (double)Math.Round((Decimal)vatPrice, 2, MidpointRounding.AwayFromZero);
+                return vatPrice;
+            }
         }
 
         public string Reverse(string sentence)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            if (sentence == null || sentence == "")
+            {
+                return sentence;
+            }
+            char[] charArray = sentence.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
 
         public int CountLinuxUsers(List<User> users)
         {
-            // Replace the exception statement below with your code!
-            throw new NotImplementedException();
+            int count = 0;
+            int userCount;
+            if (users == null || users.Count == 0)
+            {
+                userCount = 0;
+                return userCount;
+            }
+            foreach (var user in users)
+            {
+                if (user.Type.Contains("Linux"))
+                {
+                    count++;
+                }
+            }
+            return count;
+
         }
     }
 }
