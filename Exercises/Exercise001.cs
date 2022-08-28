@@ -27,13 +27,11 @@ namespace Exercises
         {
             if (vatRate < 0)
             {
-                Console.WriteLine("VAT cannot be negative. Please enter a valid VAT.");
-                return 0;
+                 return 0;
 
             }
             else if (originalPrice < 0)
             {
-                Console.WriteLine("Price cannot be negative. Please enter a valid price.");
                 return 0;
             }
             else if (vatRate == 20 || vatRate == 0)
