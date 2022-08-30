@@ -9,20 +9,16 @@ namespace Exercises
     {
         public string CapitalizeWord(string word)
         {
-            if (word == null || word == "")
-            {
-                return word;
-            }
-            else
+            if (word != null && word != "")
             {
                 return char.ToUpper(word[0]) + word.Substring(1);
+                
             }
+            return word;
         }
 
-        public string GenerateInitials(string firstName, string lastName)
-        {
-            return firstName[0] + "." + lastName[0];
-        }
+        public string GenerateInitials(string firstName, string lastName) => firstName[0] + "." + lastName[0];
+        
 
         public double AddVat(double originalPrice, double vatRate)
         {
@@ -56,15 +52,14 @@ namespace Exercises
 
         public string Reverse(string sentence)
         {
-            if (sentence == null || sentence == "")
+            if (sentence != null && sentence != "")
             {
-                return sentence;
+                char[] charArray = sentence.ToCharArray();
+                Array.Reverse(charArray);
+                return new string(charArray);
             }
-            char[] charArray = sentence.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
+            return sentence;
         }
-
         public int CountLinuxUsers(List<User> users)
         {
             int linuxUserCount = 0;
