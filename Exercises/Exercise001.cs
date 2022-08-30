@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Exercises.Models;
+using NUnit.Framework;
 
 namespace Exercises
 {
@@ -25,14 +26,21 @@ namespace Exercises
 
         public double AddVat(double originalPrice, double vatRate)
         {
+            
             if (vatRate < 0)
             {
-                 return 0;
+                /*string[] args = { "VAT cannot be negative. Please enter a valid VAT." };
+                Assert.Throws<ArgumentException>(() => new ApplicationArguments(args)); */
+                Assert.Throws<Exception>(delegate { throw new Exception("VAT cannot be negative. Please enter a valid VAT."); });
+                throw new ArgumentException(message:"VAT cannot be negative. Please enter a valid VAT.");
 
             }
             else if (originalPrice < 0)
             {
-                return 0;
+                Throws.TypeOf<ArgumentException>().With.Message.EqualTo("Price cannot be negative.Please enter a valid price.");
+                Assert.Throws<Exception>(delegate { throw new Exception("Price cannot be negative.Please enter a valid price."); });
+
+                throw new ArgumentException(message:"Price cannot be negative.Please enter a valid price.");
             }
             else if (vatRate == 20 || vatRate == 0)
             {
@@ -59,21 +67,19 @@ namespace Exercises
 
         public int CountLinuxUsers(List<User> users)
         {
-            int count = 0;
-            int userCount;
-            if (users == null || users.Count == 0)
+            int linuxUserCount = 0;
+            if (users != null && users.Count > 0)
             {
-                userCount = 0;
-                return userCount;
-            }
-            foreach (var user in users)
-            {
-                if (user.Type.Contains("Linux"))
+
+                foreach (var user in users)
                 {
-                    count++;
+                    if (user.Type.Contains("Linux"))
+                    {
+                        linuxUserCount++;
+                    }
                 }
             }
-            return count;
+            return linuxUserCount;
 
         }
     }

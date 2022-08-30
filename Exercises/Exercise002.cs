@@ -6,14 +6,12 @@ namespace Exercises
     {
         public bool IsFromManchester(Person person )
         {
-            if (person == null) return false;
-            return person.PersonLocation == "Manchester";
+            return person != null && person.PersonLocation == "Manchester";
         }
 
-        public bool CanWatchFilm(Person person, int ageLimit)
-        {
-            bool ageLimitFlag = person.PersonAge > ageLimit;
-            return ageLimitFlag;
+        public bool CanWatchFilm(Person person, int ageLimit) 
+        { 
+            return person.PersonAge > ageLimit;
         }
     }
 }
