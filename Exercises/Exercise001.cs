@@ -25,29 +25,18 @@ namespace Exercises
             
             if (vatRate < 0)
             {
-                /*string[] args = { "VAT cannot be negative. Please enter a valid VAT." };
-                Assert.Throws<ArgumentException>(() => new ApplicationArguments(args)); */
-                Assert.Throws<Exception>(delegate { throw new Exception("VAT cannot be negative. Please enter a valid VAT."); });
-                throw new ArgumentException(message:"VAT cannot be negative. Please enter a valid VAT.");
-
+               throw new ArgumentException(message: "VAT cannot be negative. Please enter a valid VAT.");
             }
             else if (originalPrice < 0)
             {
-                Throws.TypeOf<ArgumentException>().With.Message.EqualTo("Price cannot be negative.Please enter a valid price.");
-                Assert.Throws<Exception>(delegate { throw new Exception("Price cannot be negative.Please enter a valid price."); });
-
-                throw new ArgumentException(message:"Price cannot be negative.Please enter a valid price.");
+                throw new ArgumentException(message: "Price cannot be negative. Please enter a valid price.");
             }
-            else if (vatRate == 20 || vatRate == 0)
+            else if (vatRate < 20 && vatRate > 0)
             {
-                return originalPrice + vatRate;
+                var vatPrice = originalPrice + (originalPrice * vatRate / 100);
+                return  (double)Math.Round((Decimal)vatPrice, 2, MidpointRounding.AwayFromZero); 
             }
-            else
-            {
-                var vatPrice = originalPrice + originalPrice * vatRate / 100;
-                vatPrice = (double)Math.Round((Decimal)vatPrice, 2, MidpointRounding.AwayFromZero);
-                return vatPrice;
-            }
+            return (originalPrice + vatRate);
         }
 
         public string Reverse(string sentence)
